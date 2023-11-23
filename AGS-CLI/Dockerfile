@@ -40,5 +40,9 @@ RUN chmod 755 /app/pip.sh
 COPY test.sh /app
 RUN chmod 755 /app/test.sh
 
+#Work catalogue
+RUN mkdir /work
+RUN chmod 755 -R /work
+
 # Cleaning
 RUN rm -rf /var/lib/apt/lists/*
