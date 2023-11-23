@@ -9,6 +9,7 @@ RUN apt-get -yqq install bash git tmux curl nano dnsutils
 # RUN apt-get -yqq install libkrb5-dev
 RUN apt-get -yqq install wget gcc
 # RUN apt-get -yqq install python3-pip
+RUN apt-get -yqq install python3
 
 # Cleaning
 RUN rm -rf /var/lib/apt/lists/*
