@@ -8,7 +8,7 @@ sudo docker images -a                          # docker image listing
 sudo docker rmi -f image_name1 image_name2     # deleting images with force
 sudo docker ps -a                              # docker container listing (all)
 sudo docker system prune -a                    # purging all anused or dangling images, containers, volumes, and networks
-
+```
 ### Docker image building (based on Dockerfile)
 
 ```
