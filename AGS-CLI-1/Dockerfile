@@ -10,17 +10,13 @@ RUN apt-get -yqq install libkrb5-dev
 RUN apt-get -yqq install wget
 RUN apt-get -yqq install python3-pip
 
-# Cleaning
-RUN rm -rf /var/lib/apt/lists/*
-
-#Intel proxy
 ENV http_proxy=http://proxy-dmz.intel.com:911
 ENV https_proxy=http://proxy-dmz.intel.com:912
 ENV no_proxy=.intel.com,127.0.0.1,localhos
 
-# Certificate
 RUN curl http://certificates.intel.com/repository/certificates/IntelSHA256RootCA-Base64.crt  > /tmp/IntelSHA256RootCA.crt
 RUN cat /tmp/IntelSHA256RootCA.crt >> /etc/ssl/certs/ca-certificates.crt
+
 
 # Repo cloning
 COPY .netrc /root
@@ -32,12 +28,21 @@ RUN chmod 777 /app
 # ags.py changing
 RUN sed -i '1c\#!/usr/bin/env python3' /app/ags.py
 
-# env preparing
+# Virtualenv preparing
+RUN mkdir /app/virtualenv
 RUN cd /app
-RUN pip install --upgrade pip
-RUN pip install -r /app/requirements.txt
-RUN pip install -U pyinstaller
+RUN apt-get -yqq install python3-venv
+RUN python3 -m venv /app/virtualenv/ags-cli
+COPY pip.sh /app
+RUN chmod 755 /app/pip.sh
 
-# Testing connection
+# Connection testing
 COPY test.sh /app
-RUN chmod 777 /app/test.sh
+RUN chmod 755 /app/test.sh
+
+#Work catalogue
+RUN mkdir /work
+RUN chmod 755 -R /work
+
+# Cleaning
+RUN rm -rf /var/lib/apt/lists/*
