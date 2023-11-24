@@ -1,0 +1,47 @@
+FROM ubuntu:latest
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get -yqq update
+RUN apt-get -yqq install build-essential
+RUN apt-get -yqq install bash git tmux curl vim dnsutils
+RUN apt-get -yqq install krb5-user libpam-krb5 && apt-get -yqq clean
+RUN apt-get -yqq install python3-kerberos gcc
+RUN apt-get -yqq install libkrb5-dev
+RUN apt-get -yqq install wget
+RUN apt-get -yqq install python3-pip
+
+ENV http_proxy=http://proxy-dmz.intel.com:911
+ENV https_proxy=http://proxy-dmz.intel.com:912
+ENV no_proxy=.intel.com,127.0.0.1,localhost
+
+RUN curl http://certificates.intel.com/repository/certificates/IntelSHA256RootCA-Base64.crt  > /tmp/IntelSHA256RootCA.crt
+RUN cat /tmp/IntelSHA256RootCA.crt >> /etc/ssl/certs/ca-certificates.crt
+
+# create root directory for our project in the container
+RUN mkdir /app
+RUN chmod 777 /app
+
+# Install any needed packages specified in requirements.txt
+RUN git config --global url."https://${ONE_SOURCE_TOKEN}:@github.com/".insteadOf "https://github.com/"
+RUN set -o vi
+
+# Copying requirements on its own so that it can be cached in builds
+COPY requirements.txt /app/requirements.txt
+COPY dev_requirements.txt /app/dev_requirements.txt
+WORKDIR /app
+RUN pip install --upgrade pip
+RUN pip install -r dev_requirements.txt
+
+# Copy the current directory contents into the container at /app
+COPY . /app/
+# RUN cp /app/.tmux.conf /root/.tmux.conf
+# RUN python /app/tools/gen_krb5.py 
+
+# RUN cat /tmp/IntelSHA256RootCA.crt > /app/ssl/IntelSHA256RootCA-Base64.crt
+# ENV SSL_CERT_FILE /app/ssl/IntelSHA256RootCA-Base64.crt
+# RUN rm /tmp/IntelSHA256RootCA.crt
+
+# COPY . /app/
+
+ENTRYPOINT ["bash"]
+CMD []
