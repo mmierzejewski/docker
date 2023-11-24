@@ -10,9 +10,6 @@ RUN apt-get -yqq install libkrb5-dev
 RUN apt-get -yqq install wget
 RUN apt-get -yqq install python3-pip
 
-# Cleaning
-RUN rm -rf /var/lib/apt/lists/*
-
 #Intel proxy
 ENV http_proxy=http://proxy-dmz.intel.com:911
 ENV https_proxy=http://proxy-dmz.intel.com:912
@@ -41,3 +38,10 @@ RUN pip install -U pyinstaller
 # Testing connection
 COPY test.sh /app
 RUN chmod 777 /app/test.sh
+
+#Work catalogue
+RUN mkdir /work
+RUN chmod 755 -R /work
+
+# Cleaning
+RUN rm -rf /var/lib/apt/lists/*
