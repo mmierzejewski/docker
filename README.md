@@ -21,7 +21,7 @@ sudo docker build -t image_name:tag .
 ### Run container with host volume mounting
 
 ```
-sudo docker run --name container_name -v host_directory:/container_direktory -it image_name /bin/bash
+sudo docker run --name container_name -v host_directory:/container_directory -it image_name /bin/bash
 ```
 
 ### Helples links
