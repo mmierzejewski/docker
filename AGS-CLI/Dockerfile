@@ -22,10 +22,8 @@ RUN curl http://certificates.intel.com/repository/certificates/IntelSHA256RootCA
 RUN cat /tmp/IntelSHA256RootCA.crt >> /etc/ssl/certs/ca-certificates.crt
 
 # Repo cloning using an individual .netrc file with GitHub repo privileges.
-COPY .netrc /root
-RUN chmod 600 /root/.netrc
-RUN git clone https://github.com/intel-innersource/applications.productivity.ags-cli.cli.git
-RUN mv /applications.productivity.ags-cli.cli /app
+RUN mkdir /app
+COPY applications.productivity.ags-cli.cli /app
 RUN chmod 777 /app
 
 # Changing first line of ags.py file based on: https://github.com/intel-innersource/applications.productivity.ags-cli.cli#installation-on-linux
