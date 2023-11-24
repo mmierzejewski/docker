@@ -40,6 +40,6 @@ RUN pip install --upgrade pip && \
 COPY test.sh /app
 RUN chmod 777 /app/test.sh
 
-#Work catalogue
+#Work directory
 RUN mkdir /work && \
     chmod 755 -R /work
