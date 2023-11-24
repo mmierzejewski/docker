@@ -11,7 +11,7 @@ RUN apt-get -yqq update && apt-get -yqq upgrade && \
     apt-get -yqq install python3-pip && \
     rm -rf /var/lib/apt/lists/*
 
-#Intel proxy
+# Intel proxy
 ENV http_proxy=http://proxy-dmz.intel.com:911
 ENV https_proxy=http://proxy-dmz.intel.com:912
 ENV no_proxy=.intel.com,127.0.0.1,localhos
