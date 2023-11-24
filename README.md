@@ -13,7 +13,7 @@ sudo docker system prune -a                    # purging all anused or dangling 
 ### Docker image building (based on Dockerfile)
 
 ```
-sudo docker biuld -t image_name:tag . 
+sudo docker build -t image_name:tag . 
 ```
 
 ### Run container with host volume mounting
