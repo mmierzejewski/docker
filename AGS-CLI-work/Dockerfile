@@ -21,7 +21,7 @@ ENV no_proxy=.intel.com,127.0.0.1,localhos
 RUN curl http://certificates.intel.com/repository/certificates/IntelSHA256RootCA-Base64.crt  > /tmp/IntelSHA256RootCA.crt
 RUN cat /tmp/IntelSHA256RootCA.crt >> /etc/ssl/certs/ca-certificates.crt
 
-# Repo cloning using an individual .netrc file with GitHub repo privileges.
+# Copying repo from Dockerfile directory 
 RUN mkdir /app
 COPY applications.productivity.ags-cli.cli /app
 RUN chmod 777 /app
