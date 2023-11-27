@@ -44,3 +44,6 @@ RUN chmod 777 /app/test.sh
 # Work directory
 RUN mkdir /work && \
     chmod 755 -R /work
+
+# .netrc removing
+RUN rm /root/.netrc
