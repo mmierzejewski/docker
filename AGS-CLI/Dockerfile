@@ -15,7 +15,7 @@ RUN apt-get -yqq update && apt-get -yqq upgrade && \
 # Intel proxy
 ENV http_proxy=http://proxy-dmz.intel.com:911
 ENV https_proxy=http://proxy-dmz.intel.com:912
-ENV no_proxy=.intel.com,127.0.0.1,localhos
+ENV no_proxy=.intel.com,127.0.0.1,localhost
 
 # Installing "login.swiss.intel.com" certificate
 RUN curl http://certificates.intel.com/repository/certificates/IntelSHA256RootCA-Base64.crt  > /tmp/IntelSHA256RootCA.crt
