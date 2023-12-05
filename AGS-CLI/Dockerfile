@@ -16,6 +16,7 @@ RUN apt-get -yqq update && apt-get -yqq upgrade && \
 ENV http_proxy=http://proxy-dmz.intel.com:911
 ENV https_proxy=http://proxy-dmz.intel.com:912
 ENV no_proxy=.intel.com,127.0.0.1,localhost
+ENV EC_SITE=igk
 
 # Installing "login.swiss.intel.com" certificate
 RUN curl http://certificates.intel.com/repository/certificates/IntelSHA256RootCA-Base64.crt  > /tmp/IntelSHA256RootCA.crt
@@ -36,6 +37,9 @@ RUN cd /app
 RUN pip install --upgrade pip && \
     pip install -r /app/requirements.txt && \
     pip install -U pyinstaller
+
+# Alias
+RUN echo 'alias acli="python3 /app/ags"' >> ~/.bashrc
 
 # File to log in to AD and testing connection with certificate centrum:https://login.swiss.intel.com
 COPY test.sh /app
