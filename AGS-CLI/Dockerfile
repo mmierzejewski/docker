@@ -41,12 +41,11 @@ RUN pip install --upgrade pip && \
 # Alias
 RUN echo 'alias agscli="python3 /app/ags"' >> ~/.bashrc
 
-# File to log in to AD and testing connection with certificate centrum:https://login.swiss.intel.com
-COPY test.sh /app
-RUN chmod 777 /app/test.sh
-
 # Work directory
 WORKDIR /work
+
+# File to log in to AD and testing connection with certificate centrum:https://login.swiss.intel.com
+COPY test.sh /work
 
 # .netrc removing
 RUN rm /root/.netrc
