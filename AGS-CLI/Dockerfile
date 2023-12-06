@@ -39,15 +39,14 @@ RUN pip install --upgrade pip && \
     pip install -U pyinstaller
 
 # Alias
-RUN echo 'alias acli="python3 /app/ags"' >> ~/.bashrc
+RUN echo 'alias agscli="python3 /app/ags"' >> ~/.bashrc
 
 # File to log in to AD and testing connection with certificate centrum:https://login.swiss.intel.com
 COPY test.sh /app
 RUN chmod 777 /app/test.sh
 
 # Work directory
-RUN mkdir /work && \
-    chmod 755 -R /work
+WORKDIR /work
 
 # .netrc removing
 RUN rm /root/.netrc
