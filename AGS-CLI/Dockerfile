@@ -29,6 +29,9 @@ RUN git clone https://github.com/intel-innersource/applications.productivity.ags
 RUN mv /applications.productivity.ags-cli.cli /app
 RUN chmod 777 /app
 
+# .netrc removing
+RUN rm /root/.netrc
+
 # Changing first line of ags.py file based on: https://github.com/intel-innersource/applications.productivity.ags-cli.cli#installation-on-linux
 RUN sed -i '1c\#!/usr/bin/env python3' /app/ags.py
 
@@ -38,14 +41,13 @@ RUN pip install --upgrade pip && \
     pip install -r /app/requirements.txt && \
     pip install -U pyinstaller
 
-# Alias
-RUN echo 'alias agscli="python3 /app/ags"' >> ~/.bashrc
-
 # Work directory
 WORKDIR /work
 
 # File to log in to AD and testing connection with certificate centrum:https://login.swiss.intel.com
-COPY test.sh /work
+COPY test.sh /app
+RUN chmod 755 /app/test.sh
 
-# .netrc removing
-RUN rm /root/.netrc
+# Alias
+RUN echo 'alias agscli="python3 /app/ags"' >> ~/.bashrc
+RUN echo 'alias test="bash /app/test.sh"' >> ~/.bashrc
