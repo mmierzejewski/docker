@@ -13,6 +13,3 @@ RUN rm -rf /var/lib/apt/lists/*
 ENV http_proxy=http://proxy-dmz.intel.com:911
 ENV https_proxy=http://proxy-dmz.intel.com:912
 ENV no_proxy=.intel.com,127.0.0.1,localhos
-
-COPY .netrc /root
-RUN chmod 600 /root/.netrc
