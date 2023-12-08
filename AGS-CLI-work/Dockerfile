@@ -37,7 +37,7 @@ RUN pip install --upgrade pip && \
 # Work directory
 WORKDIR /work
 
-# File to log in to AD and testing connection with certificate centrum:https://login.swiss.intel.com
+# File to log in to AD and testing connection with certificate centrum: https://login.swiss.intel.com
 COPY test.sh /app
 RUN chmod 755 /app/test.sh
 
