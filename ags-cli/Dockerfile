@@ -44,3 +44,4 @@ RUN chmod 755 /app/test.sh
 # Alias
 RUN echo 'alias ags="python3 /app/ags"' >> ~/.bashrc
 RUN echo 'alias test="bash /app/test.sh"' >> ~/.bashrc
+RUN echo 'alias lsa="la -al"' >> ~/.bashrc
