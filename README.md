@@ -4,12 +4,13 @@ Docker tips
 ### Docker images/container commands
 
 ```
-sudo docker images -a                          # Docker image listing (all)
-sudo docker rmi -f image_name1 image_name2     # Deleting images with force
-sudo docker ps -a                              # Docker container listing (all)
-sudo docker system prune -a                    # Purging all anused or dangling images, containers, volumes, and networks
-sudo docker start container_id                 # Starting extited container
-sudo docker exec -it container_id /bin/bash    # Execute a command in a running container
+sudo docker images -a                               # Docker image listing (all)
+sudo docker rmi -f image_name1 image_name2          # Deleting images with force
+sudo docker ps -a                                   # Docker container listing (all)
+sudo docker system prune -a                         # Purging all anused or dangling images, containers, volumes, and networks
+sudo docker start container_id/name                 # Starting extited container
+sudo docker stop container_id/name                  # Starting extited container
+sudo docker exec -it container_id/name /bin/bash    # Execute a command in a running container
 ```
 
 ### Docker image building (based on Dockerfile)
