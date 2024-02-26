@@ -16,7 +16,7 @@ sudo docker exec -it container_id/name /bin/bash    # Execute a command in a run
 ### Docker image building (based on Dockerfile)
 
 ```
-sudo docker build --no-cache -t image_name:tag . # Image building without cache
+sudo docker build --no-cache -t image_name:tag .    # Image building without cache
 ```
 
 ### Run container with host volume mounting
